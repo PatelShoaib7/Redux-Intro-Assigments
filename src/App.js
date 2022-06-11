@@ -1,23 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { useDispatch ,useSelector} from 'react-redux';
+import {Add , Sub} from "./store/action"
 
 function App() {
+const [count , setcount] = useState(0)
+const dispatch = useDispatch();
+
+
+const state = useSelector((state) => state.count);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+     <h1> Counter App : {count} </h1>
+     <div>
+       <button onClick={() => dispatch(Add())}>Add</button>
+       <button onClick={() => dispatch(Sub())}>Reduce</button>
+    
+     </div>
     </div>
   );
 }
